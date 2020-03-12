@@ -23,6 +23,7 @@ variable "tf_vars" {
     value       = string
     description = string
     sensitive   = bool
+    hcl         = bool
   }))
   description = "Terraform variables to set in the TFC workspace. The map key is the variable name while the map value is an object representing the variable properties."
   default     = {}

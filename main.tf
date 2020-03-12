@@ -24,6 +24,7 @@ resource "tfe_variable" "tf_vars" {
   value        = each.value["value"]
   sensitive    = each.value["sensitive"]
   description  = each.value["description"]
+  hcl          = each.value["hcl"]
   category     = "terraform"
   workspace_id = tfe_workspace.workspace.id
 }
