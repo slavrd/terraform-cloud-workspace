@@ -9,23 +9,14 @@ variable "workspace_org" {
 }
 
 variable "env_vars" {
-  type = map(object({
-    value       = string
-    description = string
-    sensitive   = bool
-  }))
-  description = "Environment variables to set in the TFC workspace. The map key is the variable name while the map value is an object representing the variable properties."
+  type = map(map(any))
+  description = "Environment variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive."
   default     = {}
 }
 
 variable "tf_vars" {
-  type = map(object({
-    value       = string
-    description = string
-    sensitive   = bool
-    hcl         = bool
-  }))
-  description = "Terraform variables to set in the TFC workspace. The map key is the variable name while the map value is an object representing the variable properties."
+  type = map(map(any))
+  description = "Terraform variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive, hcl."
   default     = {}
 }
 
