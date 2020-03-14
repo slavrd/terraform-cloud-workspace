@@ -8,34 +8,29 @@ To use the project to create a workspace
 
 - Set the terraform variables. Check `variables.tf` file for available variables and description of what they are used for.
 
-**Note:** Terraform Cloud / Enterprise workspace variables are represented as a maps. The keys of the map are the variables which will be created. The values are objects representing each variable's properties - value, description and weather to be marked as sensitive.
+**Note:** Terraform Cloud / Enterprise workspace variables are represented as a maps. The keys of the map are the variables which will be created. The values are also maps which key/value pairs set the variable's properties - value, description, sensitive or hcl.
 
-Example of value of `env_vars` to set two environment variables in the TFC/E workspace:
+Example of a `.tfvars` file:
 
 ```hcl
 env_vars = {
   ENV_VAR_1 = {
     value       = "value1"
-    sensitive   = true
-    description = "Description of ENV_VAR_1"
   }
   ENV_VAR_2 = {
     value       = "value2"
-    sensitive   = false
+    sensitive   = true
     description = "Description of ENV_VAR_2"
   }
 }
 
-tf_vars {
+tf_vars = {
   string_tf_var = {
     value       = "value1"
     sensitive   = true
-    description = "Description of string_tf_var"
-    hcl         = false
   }
   hcl_list_tf_var = {
     value       = "[\"string1\", \"string2\"]"
-    sensitive   = false
     description = "Description of hcl_list_tf_var"
     hcl         = true
   }
