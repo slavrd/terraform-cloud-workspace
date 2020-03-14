@@ -9,13 +9,13 @@ variable "workspace_org" {
 }
 
 variable "env_vars" {
-  type = map(map(any))
+  type        = map(map(any))
   description = "Environment variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive."
   default     = {}
 }
 
 variable "tf_vars" {
-  type = map(map(any))
+  type        = map(map(any))
   description = "Terraform variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive, hcl."
   default     = {}
 }
