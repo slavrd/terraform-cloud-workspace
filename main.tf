@@ -1,6 +1,7 @@
 provider "tfe" {
-  version = "~> 0.14"
-  token   = var.tfe_token
+  version  = "~> 0.14"
+  token    = var.tfe_token
+  hostname = var.tfe_hostname
 }
 
 terraform {
@@ -37,6 +38,7 @@ data "template_file" "backend" {
   template = <<-EOT
   terraform {
     backend "remote" {
+      hostname     = "$${tfe_hostname}"
       organization = "$${org_name}"
       workspaces {
         name = "$${ws_name}"
@@ -45,7 +47,8 @@ data "template_file" "backend" {
   }
 EOT
   vars = {
-    ws_name  = tfe_workspace.workspace.name
-    org_name = tfe_workspace.workspace.organization
+    ws_name      = tfe_workspace.workspace.name
+    org_name     = tfe_workspace.workspace.organization
+    tfe_hostname = var.tfe_hostname
   }
 }
