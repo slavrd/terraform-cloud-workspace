@@ -25,3 +25,9 @@ variable "tfe_token" {
   description = "Terraform Cloud / Enterprise user access token. Leave the default value to use the Terraform CLI credentials file insted."
   default     = null
 }
+
+variable "tfe_hostname" {
+  type        = string
+  description = "Hostname of the TFE secrvice which to connect to."
+  default     = "app.terraform.io"
+}
