@@ -31,3 +31,9 @@ variable "tfe_hostname" {
   description = "Hostname of the TFE secrvice which to connect to."
   default     = "app.terraform.io"
 }
+
+variable "terraform_version" {
+  type        = string
+  description = "The version of Terraform to use for this workspace. Defaults to the latest available version."
+  default     = null
+}

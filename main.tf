@@ -9,8 +9,9 @@ terraform {
 }
 
 resource "tfe_workspace" "workspace" {
-  name         = var.workspace_name
-  organization = var.workspace_org
+  name              = var.workspace_name
+  organization      = var.workspace_org
+  terraform_version = var.terraform_version
 }
 
 resource "tfe_variable" "env_vars" {
