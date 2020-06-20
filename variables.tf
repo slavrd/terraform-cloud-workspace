@@ -20,18 +20,6 @@ variable "tf_vars" {
   default     = {}
 }
 
-variable "tfe_token" {
-  type        = string
-  description = "Terraform Cloud / Enterprise user access token. Leave the default value to use the Terraform CLI credentials file insted."
-  default     = null
-}
-
-variable "tfe_hostname" {
-  type        = string
-  description = "Hostname of the TFE secrvice which to connect to."
-  default     = "app.terraform.io"
-}
-
 variable "terraform_version" {
   type        = string
   description = "The version of Terraform to use for this workspace. Defaults to the latest available version."
