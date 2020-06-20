@@ -1,11 +1,9 @@
-provider "tfe" {
-  version  = "~> 0.14"
-  token    = var.tfe_token
-  hostname = var.tfe_hostname
-}
 
 terraform {
   required_version = "~> 0.12.20"
+  required_providers {
+    tfe = "~>0.14"
+  }
 }
 
 resource "tfe_workspace" "workspace" {
@@ -33,23 +31,4 @@ resource "tfe_variable" "tf_vars" {
   hcl          = try(each.value["hcl"], null)
   category     = "terraform"
   workspace_id = tfe_workspace.workspace.id
-}
-
-data "template_file" "backend" {
-  template = <<-EOT
-  terraform {
-    backend "remote" {
-      hostname     = "$${tfe_hostname}"
-      organization = "$${org_name}"
-      workspaces {
-        name = "$${ws_name}"
-      }
-    }
-  }
-EOT
-  vars = {
-    ws_name      = tfe_workspace.workspace.name
-    org_name     = tfe_workspace.workspace.organization
-    tfe_hostname = var.tfe_hostname
-  }
 }
