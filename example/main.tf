@@ -5,8 +5,7 @@ provider "tfe" {
 }
 
 module "tfc_workspace_example" {
-  # source = "github.com/slavrd/terraform-cloud-workspace"
-  source = "../"
+  source = "github.com/slavrd/terraform-cloud-workspace"
 
   workspace_name    = var.workspace_name
   workspace_org     = var.workspace_org
