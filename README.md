@@ -1,16 +1,30 @@
 # Terraform Cloud/Enterprise create workspace
 
-A project to create a simple workspace in Terraform Cloud / Enterprise. The project is basic and allows only variables to be set for the workspace. All other settings will be default.
+A module to create a simple Terraform Cloud / Enterprise workspace.
+
+Currently the module only manages the name of the workspace, the terraform version and the variables.
 
 ## Usage
 
-To use the project to create a workspace
+An example tf code that uses the module is placed in the `example/` directory. 
 
-- Set the terraform variables. Check `variables.tf` file for available variables and description of what they are used for.
+In addition to using the module the example code also demonstrates the use of a `template_file` data source to output the needed backend configuration for using the managed workspace.
 
-**Note:** Terraform Cloud / Enterprise workspace variables are represented as a maps. The keys of the map are the variables which will be created. The values are also maps which key/value pairs set the variable's properties - value, description, sensitive or hcl.
+## Input Variables
 
-Example of a `.tfvars` file:
+Below is a table of the available input variables
+
+| Variable | Type | Default | Description |
+| -------- | ---- | ------- | ----------- |
+| workspace_name | `string` | | The name of the TFC workspace to create. |
+| workspace_org | `string` | | The name of the TFC organization in which to create. |
+| env_vars | `map(map(any))` | `{}` | Environment variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive. Example values are in the note below the table. |
+| tf_vars | `map(map(any))` | `{}` | Terraform variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive, hcl. |
+| terraform_version | `string` | `null` | The version of Terraform to use for this workspace. Defaults to the latest available version. |
+
+**Note:** Terraform Cloud / Enterprise workspace variables are represented as a maps. The keys of the map are the variables which will be created. The values are also maps which key/value pairs set the variable's properties - value, description, sensitive or hcl. Value is mandatory.
+
+Example of setting the `env_vars` and `tf_vars` in a terraform variables file:
 
 ```hcl
 env_vars = {
@@ -35,24 +49,4 @@ tf_vars = {
     hcl         = true
   }
 }
-```
-
-Setting workspace terraform variables using the `tf_vars` input variable is analogical.
-
-- Initialize Terraform
-
-```bash
-terraform init
-```
-
-- Create workspace
-
-```bash
-terraform apply
-```
-
-- Delete workspace
-
-```bash
-terraform destroy
 ```
