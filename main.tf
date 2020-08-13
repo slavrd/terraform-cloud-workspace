@@ -1,11 +1,3 @@
-
-terraform {
-  required_version = "~> 0.12.20"
-  required_providers {
-    tfe = "~>0.14"
-  }
-}
-
 resource "tfe_workspace" "workspace" {
   name              = var.workspace_name
   organization      = var.workspace_org
