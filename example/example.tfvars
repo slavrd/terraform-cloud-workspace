@@ -1,6 +1,6 @@
 workspace_name    = "example-workspace"
 workspace_org     = "my-tfe-organization"
-terraform_version = "0.12.26"
+terraform_version = "0.13.0"
 
 env_vars = {
   SECURE_ENV_VAR = {
