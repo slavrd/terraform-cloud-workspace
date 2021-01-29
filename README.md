@@ -21,6 +21,9 @@ Below is a table of the available input variables
 | env_vars | `map(map(any))` | `{}` | Environment variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive. Example values are in the note below the table. |
 | tf_vars | `map(map(any))` | `{}` | Terraform variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive, hcl. |
 | terraform_version | `string` | `null` | The version of Terraform to use for this workspace. Defaults to the latest available version. |
+| execution_mode | `string` | `null` | Which execution mode to use. Using Terraform Cloud, valid values are remote, local or agent. |
+| working_directory | `string` | `null` | A relative path that Terraform will execute within. |
+| vcs_repo | `map(string)` | `{}` | A mapping of vcs_repo settings as described in [tfe_workspace documentation](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace#vcs_repo). If provided must contain `identifier` and `oauth_token_id` keys. |
 
 **Note:** Terraform Cloud / Enterprise workspace variables are represented as a maps. The keys of the map are the variables which will be created. The values are also maps which key/value pairs set the variable's properties - value, description, sensitive or hcl. Value is mandatory.
 
