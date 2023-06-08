@@ -61,3 +61,4 @@ tf_vars = {
     - [ ] add support to assign workspace to project
     - [ ] add support to enable workspace health assessments
     - [ ] add support to enable worksapce output sharing
+    - [ ] add support to disable auto run queueing on creation
