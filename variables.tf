@@ -9,13 +9,22 @@ variable "workspace_org" {
 }
 
 variable "env_vars" {
-  type        = map(map(any))
+  type = map(object({
+    value       = string
+    description = optional(string)
+    sensitive   = optional(bool)
+  }))
   description = "Environment variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive."
   default     = {}
 }
 
 variable "tf_vars" {
-  type        = map(map(any))
+  type = map(object({
+    value       = string
+    description = optional(string)
+    sensitive   = optional(bool)
+    hcl         = optional(bool)
+  }))
   description = "Terraform variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive, hcl."
   default     = {}
 }
@@ -40,11 +49,18 @@ variable "working_directory" {
 }
 
 variable "vcs_repo" {
-  type        = map(any)
-  description = "A mapping of vcs_repo settings as described in https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace#vcs_repo. If provided must contain `identifier` and `oauth_token_id` keys."
+  type        = object({
+    identifier = string
+    oauth_token_id = optional(string)
+    github_app_installation_id = optional(string)
+    branch = optional(string)
+    ingress_submodules = optional(bool)
+    tags_regex = optional(string)
+  })
+  description = "An object representing the vcs_repo settings as described in https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace#vcs_repo."
   validation {
-    condition     = var.vcs_repo == tomap({}) || alltrue([contains(keys(var.vcs_repo), "identifier"), contains(keys(var.vcs_repo), "oauth_token_id")])
-    error_message = "The `vcs_repo` variable value must contain `identifier` and `oauth_token_id` keys."
+    condition = var.vcs_repo == null || try(alltrue([!alltrue([var.vcs_repo.oauth_token_id == null, var.vcs_repo.github_app_installation_id == null]), !alltrue([var.vcs_repo.oauth_token_id != null, var.vcs_repo.github_app_installation_id != null])]), false)
+    error_message = "Variable validation: 'identifier' must be set and exactly one of 'oauth_token_id' or 'github_app_installation_id' must be set."
   }
-  default = {}
+  default = null
 }
