@@ -19,9 +19,9 @@ resource "tfe_workspace" "workspace" {
 resource "tfe_variable" "env_vars" {
   for_each     = var.env_vars
   key          = each.key
-  value        = each.value["value"]
-  sensitive    = try(each.value["sensitive"], null)
-  description  = try(each.value["description"], null)
+  value        = each.value.value
+  sensitive    = each.value.sensitive
+  description  = each.value.description
   category     = "env"
   workspace_id = tfe_workspace.workspace.id
 }
@@ -29,10 +29,10 @@ resource "tfe_variable" "env_vars" {
 resource "tfe_variable" "tf_vars" {
   for_each     = var.tf_vars
   key          = each.key
-  value        = each.value["value"]
-  sensitive    = try(each.value["sensitive"], null)
-  description  = try(each.value["description"], null)
-  hcl          = try(each.value["hcl"], null)
+  value        = each.value.value
+  sensitive    = each.value.sensitive
+  description  = each.value.description
+  hcl          = each.value.hcl
   category     = "terraform"
   workspace_id = tfe_workspace.workspace.id
 }
