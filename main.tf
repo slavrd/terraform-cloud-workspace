@@ -1,19 +1,21 @@
 resource "tfe_workspace" "workspace" {
-  name              = var.workspace_name
-  organization      = var.workspace_org
-  terraform_version = var.terraform_version
-  execution_mode    = var.execution_mode
-  working_directory = var.working_directory
+  name                      = var.workspace_name
+  organization              = var.workspace_org
+  terraform_version         = var.terraform_version
+  execution_mode            = var.execution_mode
+  working_directory         = var.working_directory
+  global_remote_state       = var.global_remote_state
+  remote_state_consumer_ids = var.remote_state_consumer_ids
 
   dynamic "vcs_repo" {
     for_each = var.vcs_repo == null ? [] : [var.vcs_repo]
     content {
-      identifier         = vcs_repo.value.identifier
-      oauth_token_id     = vcs_repo.value.oauth_token_id
+      identifier                 = vcs_repo.value.identifier
+      oauth_token_id             = vcs_repo.value.oauth_token_id
       github_app_installation_id = vcs_repo.value.github_app_installation_id
-      branch             = vcs_repo.value.branch
-      ingress_submodules = vcs_repo.value.ingress_submodules
-      tags_regex = vcs_repo.value.tags_regex
+      branch                     = vcs_repo.value.branch
+      ingress_submodules         = vcs_repo.value.ingress_submodules
+      tags_regex                 = vcs_repo.value.tags_regex
     }
   }
 }

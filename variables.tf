@@ -48,18 +48,30 @@ variable "working_directory" {
   default     = null
 }
 
+variable "global_remote_state" {
+  type        = bool
+  description = "Whether the workspace allows all workspaces in the organization to access its state data during runs."
+  default     = null
+}
+
+variable "remote_state_consumer_ids" {
+  type        = list(string)
+  description = "Whether the workspace allows all workspaces in the organization to access its state data during runs."
+  default     = null
+}
+
 variable "vcs_repo" {
-  type        = object({
-    identifier = string
-    oauth_token_id = optional(string)
+  type = object({
+    identifier                 = string
+    oauth_token_id             = optional(string)
     github_app_installation_id = optional(string)
-    branch = optional(string)
-    ingress_submodules = optional(bool)
-    tags_regex = optional(string)
+    branch                     = optional(string)
+    ingress_submodules         = optional(bool)
+    tags_regex                 = optional(string)
   })
   description = "An object representing the vcs_repo settings as described in https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace#vcs_repo."
   validation {
-    condition = var.vcs_repo == null || try(alltrue([!alltrue([var.vcs_repo.oauth_token_id == null, var.vcs_repo.github_app_installation_id == null]), !alltrue([var.vcs_repo.oauth_token_id != null, var.vcs_repo.github_app_installation_id != null])]), false)
+    condition     = var.vcs_repo == null || try(alltrue([!alltrue([var.vcs_repo.oauth_token_id == null, var.vcs_repo.github_app_installation_id == null]), !alltrue([var.vcs_repo.oauth_token_id != null, var.vcs_repo.github_app_installation_id != null])]), false)
     error_message = "Variable validation: 'identifier' must be set and exactly one of 'oauth_token_id' or 'github_app_installation_id' must be set."
   }
   default = null
