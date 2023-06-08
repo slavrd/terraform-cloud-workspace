@@ -53,3 +53,11 @@ tf_vars = {
   }
 }
 ```
+
+## Todo
+
+- [ ] change variable definitions and usage to use current type constraints
+- [ ] add workspace features
+    - [ ] add support to assign workspace to project
+    - [ ] add support to enable workspace health assessments
+    - [ ] add support to enable worksapce output sharing
