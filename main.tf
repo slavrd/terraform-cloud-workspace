@@ -6,12 +6,14 @@ resource "tfe_workspace" "workspace" {
   working_directory = var.working_directory
 
   dynamic "vcs_repo" {
-    for_each = var.vcs_repo == tomap({}) ? [] : [var.vcs_repo]
+    for_each = var.vcs_repo == null ? [] : [var.vcs_repo]
     content {
-      identifier         = vcs_repo.value["identifier"]
-      oauth_token_id     = vcs_repo.value["oauth_token_id"]
-      branch             = lookup(vcs_repo.value, "branch", null)
-      ingress_submodules = lookup(vcs_repo.value, "ingress_submodules", null)
+      identifier         = vcs_repo.value.identifier
+      oauth_token_id     = vcs_repo.value.oauth_token_id
+      github_app_installation_id = vcs_repo.value.github_app_installation_id
+      branch             = vcs_repo.value.branch
+      ingress_submodules = vcs_repo.value.ingress_submodules
+      tags_regex = vcs_repo.value.tags_regex
     }
   }
 }
