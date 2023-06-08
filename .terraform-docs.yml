@@ -1,0 +1,32 @@
+content: |
+  # Terraform Cloud/Enterprise create workspace
+
+  A module to create a simple Terraform Cloud / Enterprise workspace.
+  
+  Currently the module only manages the name of the workspace, the terraform version and the variables.
+  
+  ## Usage
+  
+  An example tf code that uses the module is placed in the `example/` directory. 
+  
+  In addition to using the module the example code also demonstrates the use of a `template_file` data source to output the needed backend configuration for using the managed workspace.
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+  {{ .Requirements }}
+
+  {{ .Resources }}
+
+  ## Documentation
+
+  Generated with [terraform-docs](https://terraform-docs.io/user-guide/introduction/) . Configuration file is in `.terraform-docs.yml`. 
+  
+  To generate the docs 
+  
+  * Have [terraform-docs](https://terraform-docs.io/user-guide/introduction/) installed.
+  * Run
+  ```bash
+  terraform-docs markdown table . > README.md
+  ```
