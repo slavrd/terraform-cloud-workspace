@@ -57,3 +57,11 @@ To generate the docs
 ```bash
 terraform-docs markdown table . > README.md
 ```
+
+## Todo
+
+- [x] change variable definitions and usage to use current type constraints
+- [ ] add support to assign workspace to project
+- [ ] add support to enable workspace health assessments
+- [x] add support to enable worksapce output sharing
+- [ ] add support to disable auto run queueing on creation
