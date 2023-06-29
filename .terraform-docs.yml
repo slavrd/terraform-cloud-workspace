@@ -37,4 +37,4 @@ content: |
   - [ ] add support to assign workspace to project
   - [ ] add support to enable workspace health assessments
   - [x] add support to enable workspace output sharing
-  - [ ] add support to disable auto run queueing on creation
+  - [x] add support to disable auto run queueing on creation
