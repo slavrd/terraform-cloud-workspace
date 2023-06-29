@@ -60,6 +60,12 @@ variable "remote_state_consumer_ids" {
   default     = null
 }
 
+variable "queue_all_runs" {
+  type        = bool
+  description = "Whether the workspace should start automatically performing runs immediately after its creation."
+  default     = null
+}
+
 variable "vcs_repo" {
   type = object({
     identifier                 = string
