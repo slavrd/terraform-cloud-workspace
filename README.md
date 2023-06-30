@@ -1,3 +1,4 @@
+<!-- BEGIN_TF_DOCS -->
 # Terraform Cloud/Enterprise create workspace
 
 A module to create a simple Terraform Cloud / Enterprise workspace.
@@ -67,4 +68,5 @@ terraform-docs markdown table . > README.md
 - [ ] add support to enable workspace health assessments
 - [x] add support to enable workspace output sharing
 - [x] add support to disable auto run queueing on creation
-- [x] implement GitHub Actions checks
+- [x] implement GitHub Actions checks - test tf formatting, auto generate docs
+<!-- END_TF_DOCS -->
