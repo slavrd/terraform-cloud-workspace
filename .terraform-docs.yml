@@ -31,11 +31,11 @@ content: |
   terraform-docs markdown table . > README.md
   ```
 
-  ## Todo
+  ## TODO
 
   - [x] change variable definitions and usage to use current type constraints
   - [x] add support to assign workspace to project
   - [ ] add support to enable workspace health assessments
   - [x] add support to enable workspace output sharing
   - [x] add support to disable auto run queueing on creation
-  - [ ] implement GitHub Actions checks
+  - [x] implement GitHub Actions checks
