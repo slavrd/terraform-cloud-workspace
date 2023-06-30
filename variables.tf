@@ -72,6 +72,12 @@ variable "project_id" {
   default     = null
 }
 
+variable "assessments_enabled" {
+  type        = bool
+  description = "Enable health assessments."
+  default     = null
+}
+
 variable "vcs_repo" {
   type = object({
     identifier                 = string
