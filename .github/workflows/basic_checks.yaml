@@ -1,0 +1,12 @@
+name: Basic Checks
+on: [pull_request]
+jobs:
+  test-terraform-formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+      - name: Terraform configuration was formatted
+        run: terraform fmt -recursive
