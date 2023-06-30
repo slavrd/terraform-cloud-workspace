@@ -66,6 +66,12 @@ variable "queue_all_runs" {
   default     = null
 }
 
+variable "project_id" {
+  type        = string
+  description = "ID of the project where the workspace should be created."
+  default     = null
+}
+
 variable "vcs_repo" {
   type = object({
     identifier                 = string

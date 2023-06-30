@@ -7,6 +7,7 @@ resource "tfe_workspace" "workspace" {
   global_remote_state       = var.global_remote_state
   remote_state_consumer_ids = var.remote_state_consumer_ids
   queue_all_runs            = var.queue_all_runs
+  project_id                = var.project_id
 
   dynamic "vcs_repo" {
     for_each = var.vcs_repo == null ? [] : [var.vcs_repo]

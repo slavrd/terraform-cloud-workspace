@@ -17,6 +17,7 @@ In addition to using the module the example code also demonstrates the use of a 
 | <a name="input_env_vars"></a> [env\_vars](#input\_env\_vars) | Environment variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive. | <pre>map(object({<br>    value       = string<br>    description = optional(string)<br>    sensitive   = optional(bool)<br>  }))</pre> | `{}` | no |
 | <a name="input_execution_mode"></a> [execution\_mode](#input\_execution\_mode) | Which execution mode to use. Using Terraform Cloud, valid values are remote, local or agent. | `string` | `null` | no |
 | <a name="input_global_remote_state"></a> [global\_remote\_state](#input\_global\_remote\_state) | Whether the workspace allows all workspaces in the organization to access its state data during runs. | `bool` | `null` | no |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | ID of the project where the workspace should be created. | `string` | `null` | no |
 | <a name="input_queue_all_runs"></a> [queue\_all\_runs](#input\_queue\_all\_runs) | Whether the workspace should start automatically performing runs immediately after its creation. | `bool` | `null` | no |
 | <a name="input_remote_state_consumer_ids"></a> [remote\_state\_consumer\_ids](#input\_remote\_state\_consumer\_ids) | Whether the workspace allows all workspaces in the organization to access its state data during runs. | `list(string)` | `null` | no |
 | <a name="input_terraform_version"></a> [terraform\_version](#input\_terraform\_version) | The version of Terraform to use for this workspace. Defaults to the latest available version. | `string` | `null` | no |
@@ -62,7 +63,7 @@ terraform-docs markdown table . > README.md
 ## Todo
 
 - [x] change variable definitions and usage to use current type constraints
-- [ ] add support to assign workspace to project
+- [x] add support to assign workspace to project
 - [ ] add support to enable workspace health assessments
 - [x] add support to enable workspace output sharing
 - [x] add support to disable auto run queueing on creation
