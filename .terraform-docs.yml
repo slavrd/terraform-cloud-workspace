@@ -34,7 +34,7 @@ content: |
   ## Todo
 
   - [x] change variable definitions and usage to use current type constraints
-  - [ ] add support to assign workspace to project
+  - [x] add support to assign workspace to project
   - [ ] add support to enable workspace health assessments
   - [x] add support to enable workspace output sharing
   - [x] add support to disable auto run queueing on creation
