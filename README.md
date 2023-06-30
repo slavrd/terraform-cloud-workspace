@@ -67,3 +67,4 @@ terraform-docs markdown table . > README.md
 - [ ] add support to enable workspace health assessments
 - [x] add support to enable workspace output sharing
 - [x] add support to disable auto run queueing on creation
+- [ ] implement GitHub Actions checks
