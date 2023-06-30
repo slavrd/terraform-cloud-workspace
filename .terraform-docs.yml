@@ -38,4 +38,4 @@ content: |
   - [ ] add support to enable workspace health assessments
   - [x] add support to enable workspace output sharing
   - [x] add support to disable auto run queueing on creation
-  - [x] implement GitHub Actions checks
+  - [x] implement GitHub Actions checks - test tf formatting, auto generate docs

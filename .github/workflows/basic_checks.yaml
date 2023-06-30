@@ -10,3 +10,17 @@ jobs:
         uses: hashicorp/setup-terraform@v2.0.3
       - name: Terraform configuration was formatted
         run: terraform fmt -recursive -check
+  generate-tf-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Render terraform docs inside the README.md and push changes back to PR branch
+        uses: terraform-docs/gh-actions@v1.0.0
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: replace
+          git-push: "true"
