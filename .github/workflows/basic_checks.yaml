@@ -9,4 +9,4 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.3
       - name: Terraform configuration was formatted
-        run: terraform fmt -recursive
+        run: terraform fmt -recursive -check
