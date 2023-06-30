@@ -15,6 +15,7 @@ In addition to using the module the example code also demonstrates the use of a 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_assessments_enabled"></a> [assessments\_enabled](#input\_assessments\_enabled) | Enable health assessments. | `bool` | `null` | no |
 | <a name="input_env_vars"></a> [env\_vars](#input\_env\_vars) | Environment variables to set in the TFC workspace. The map key is the workspace variable name. The value is another map where the key value pairs set the properties of the variable - value, description, sensitive. | <pre>map(object({<br>    value       = string<br>    description = optional(string)<br>    sensitive   = optional(bool)<br>  }))</pre> | `{}` | no |
 | <a name="input_execution_mode"></a> [execution\_mode](#input\_execution\_mode) | Which execution mode to use. Using Terraform Cloud, valid values are remote, local or agent. | `string` | `null` | no |
 | <a name="input_global_remote_state"></a> [global\_remote\_state](#input\_global\_remote\_state) | Whether the workspace allows all workspaces in the organization to access its state data during runs. | `bool` | `null` | no |
